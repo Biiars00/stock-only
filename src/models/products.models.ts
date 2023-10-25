@@ -1,6 +1,7 @@
-// export interface Product {
-//   id: string;
-//   nameProduct: string;
-//   price: number;
-//   unit: number;
-// }
+import admin from 'firebase-admin';
+
+const database = admin.initializeApp({
+  credential: admin.credential.cert('src/database/produtosFirestore.json'),
+});
+
+export default database;

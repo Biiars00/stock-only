@@ -1,102 +1,95 @@
 import { Request, Response } from 'express';
-import admin from 'firebase-admin';
+import ProductsService from '../services/products.service';
 
-admin.initializeApp({
-  credential: admin.credential.cert('src/database/firebaseAdmin.json'),
-});
+class ProductsController {
+  private productsServices: ProductsService;
 
-//GET
-export async function listProducts(req: Request, res: Response) {
-  try {
-    const db = await admin.firestore().collection('produtos').get();
-    const produtos = db.docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id,
-    }));
-    res.status(200).json(produtos);
-  } catch (error) {
-    console.error('Erro ao acessar o Banco de dados:', error);
-    res.status(500).json({ error: 'Erro do servidor' });
+  constructor(productsServices: ProductsService) {
+    this.productsServices = productsServices;
   }
-}
 
-//GET/:ID
-export async function listProductsId(req: Request, res: Response) {
-  try {
-    const productId = req.params.id;
-    const db = await admin
-      .firestore()
-      .collection('produtos')
-      .doc(productId)
-      .get();
+  async getProducts(req: Request, res: Response) {
+    try {
+      const products = await this.productsServices.getProducts();
 
-    if (!db.exists) {
-      res.status(404).json({ error: 'Produto não encontrado' });
-      return;
+      if (!products) {
+        return res.status(400).json({ error: 'Product list not found' });
+      }
+
+      return res.status(200).send(products);
+    } catch (err) {
+      throw new Error('Error when searching for products');
     }
+  }
 
-    const produto = db.data();
+  async getProductById(req: Request, res: Response) {
+    try {
+      const product = req.params.id;
+      const productsId = await this.productsServices.getProductById(product);
 
-    res.status(200).json(produto);
-  } catch (error) {
-    console.error('Erro ao acessar o Banco de dados:', error);
-    console.log('');
-    res.status(500).json({ error: 'Erro interno do servidor' });
+      if (!productsId) {
+        return res.status(400).json({ error: 'Product not found' });
+      }
+
+      return res.status(200).send(productsId);
+    } catch (err) {
+      throw new Error('Error when searching for product by ID');
+    }
+  }
+
+  async registerProduct(req: Request, res: Response) {
+    try {
+      const addProducts = await this.productsServices.registerProduct(
+        req.body.id,
+        req.body.nameProduct,
+        req.body.unit,
+        req.body.price,
+      );
+
+      if (!addProducts) {
+        return res.status(400).json({ error: 'Product not added' });
+      }
+
+      return res.status(200).send(addProducts);
+    } catch (err) {
+      throw new Error('Error when adding product');
+    }
+  }
+
+  async updateProduct(req: Request, res: Response) {
+    try {
+      const updateProducts = await this.productsServices.updateProduct(
+        req.params.id,
+        req.body.nameProduct,
+        req.body.unit,
+        req.body.price,
+      );
+
+      if (!updateProducts) {
+        return res.status(400).json({ error: 'Product not updated' });
+      }
+
+      return res.status(200).send(updateProducts);
+    } catch (err) {
+      throw new Error('Error when updating product');
+    }
+  }
+
+  async removeProduct(req: Request, res: Response) {
+    try {
+      const deleteProducts = await this.productsServices.removeProduct(
+        req.params.id,
+      );
+
+      if (!deleteProducts) {
+        return res.status(400).json({ error: 'Product not removed' });
+      }
+
+      return res.status(200).send(deleteProducts);
+    } catch (err) {
+      throw new Error('Error when removing product');
+    }
   }
 }
 
-//POST
-export async function registerProduct(req: Request, res: Response) {
-  try {
-    const addProduct = req.body;
-
-    const produtoId = await admin
-      .firestore()
-      .collection('produtos')
-      .add(addProduct);
-
-    res
-      .status(201)
-      .json({ id: produtoId.id, message: 'Produto cadastrado com sucesso' });
-  } catch (error) {
-    console.error('Erro ao cadastrar produto:', error);
-    res.status(500).json({ error: 'Erro interno do servidor' });
-  }
-}
-
-// PUT
-export async function updateProduct(req: Request, res: Response) {
-  try {
-    const product = req.body;
-    const productId = req.params.id;
-
-    const db = await admin
-      .firestore()
-      .collection('produtos')
-      .doc(productId)
-      .update(product);
-
-    return res.status(200).json(db);
-  } catch (error) {
-    console.error('Erro ao atualizar produto:', error);
-    return res.status(500).json({ error: 'Erro interno do servidor' });
-  }
-}
-
-// DELETE
-export async function removeProduct(req: Request, res: Response) {
-  try {
-    const product = req.body;
-    const productId = req.params.id;
-
-    const db = await admin
-      .firestore()
-      .collection('produtos')
-      .doc(productId)
-      .delete(product);
-
-    return res.status(200).json(db);
-  } catch (error) {
-    return res.status(500).json({ error: 'Erro interno do servidor' });
-  }
-}
+export default ProductsController;

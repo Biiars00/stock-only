@@ -20,17 +20,17 @@ Este projeto visa viabilizar o planejamento, execução e controle dos recursos 
 + Editar e 
 + Remover produtos
 
-[em desenvolvimento] 
-
-GET       | POST      | PUT           | DELETE
---------- | --------- | ------------- | ------
-/produtos | /produtos | /produtos/:id | /produtos/:id
-
+MÉTODO       | URL     | DESCRIÇÃO    
+--------- | --------- | ------------- 
+GET | http://localhost:3000/ | Listar produtos 
+GET | http://localhost:3000/:id | Listar produto por ID
+POST | http://localhost:3000/ | Cdastrar produto
+PUT | http://localhost:3000/:id | Editar produto por ID
 
 #### Banco de dados
 + Possui integração com Firebase
 
 
-## Autores
+## Autora
 
 - [@Biiars00](https://www.github.com/Biiars00)
