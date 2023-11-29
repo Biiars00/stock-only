@@ -1,7 +1,7 @@
 import IProductsRepository, {
   IProductProps,
 } from '../interfaces/product.interface';
-import database from '../models/products.models';
+import database from '../database/products.database';
 
 class ProductsRepository implements IProductsRepository {
   private db;
