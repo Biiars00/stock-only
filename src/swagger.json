@@ -1,0 +1,310 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API",
+      "description": "API documentation",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Stock Only - Local"
+      },
+      {
+        "url": "xxxx",
+        "description": "Stock Only - Produção"
+      }
+    ],
+    "paths": {
+      "/": {
+        "get": {
+          "tags": ["Produtos"],
+          "summary": "Listar Produtos",
+          "responses": {
+            "200": {
+              "description": "Lista de produtos retornada com sucesso!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "nameProduct": {
+                            "type": "string"
+                          },
+                          "price": {
+                            "type": "number"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "manufacturer": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "type": "object",
+                            "properties": {
+                              "office": {
+                                "type": "string"
+                              },
+                              "technology": {
+                                "type": "string"
+                              },
+                              "others": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Atenção, falta recurso!"
+            },
+            "404": {
+              "description": "Recurso não encontrado!"
+            },
+            "500": {
+              "description": "Algo deu errado no processamento!"
+            }
+          }
+        },
+        "post": {
+          "tags": ["Produtos"],
+          "summary": "Cadastrar Produto",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "nameProduct": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "manufacturer": {
+                          "type": "string"
+                        },
+                        "category": {
+                          "type": "object",
+                          "properties": {
+                            "office": {
+                              "type": "string"
+                            },
+                            "technology": {
+                              "type": "string"
+                            },
+                            "others": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Produto cadastrado com sucesso!"
+            },
+            "400": {
+              "description": "Atenção, falta recurso!"
+            },
+            "404": {
+              "description": "Recurso não encontrado!"
+            },
+            "500": {
+              "description": "Algo deu errado no processamento!"
+            }
+          }
+        }
+      },
+      "/{id}": {
+        "get": {
+          "tags": ["Produtos"],
+          "summary": "Buscar Produto por ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "ID do Produto"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Produto encontrado com sucesso!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "nameProduct": {
+                            "type": "string"
+                          },
+                          "price": {
+                            "type": "number"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "manufacturer": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "type": "object",
+                            "properties": {
+                              "office": {
+                                "type": "string"
+                              },
+                              "technology": {
+                                "type": "string"
+                              },
+                              "others": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Atenção, falta recurso!"
+            },
+            "404": {
+              "description": "Recurso não encontrado!"
+            },
+            "500": {
+              "description": "Algo deu errado no processamento!"
+            }
+          }
+        },
+        "put": {
+          "tags": ["Produtos"],
+          "summary": "Atualizar Produto com Base no ID.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "ID do Produto"
+            }
+          ],
+          "requestBody":{
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "nameProduct": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "manufacturer": {
+                          "type": "string"
+                        },
+                        "category": {
+                          "type": "object",
+                          "properties": {
+                            "office": {
+                              "type": "string"
+                            },
+                            "technology": {
+                              "type": "string"
+                            },
+                            "others": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Produto atualizado com sucesso!"
+            },
+            "400": {
+              "description": "Atenção, falta recurso!"
+            },
+            "404": {
+              "description": "Recurso não encontrado!"
+            },
+            "500": {
+              "description": "Algo deu errado no processamento!"
+            }
+          }
+        },
+        "delete": {
+          "tags": ["Produtos"],
+          "summary": "Remover Produto com Base no ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "ID da demanda"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Produto removido com sucesso!"
+            },
+            "400": {
+              "description": "Atenção, falta recurso!"
+            },
+            "404": {
+              "description": "Recurso não encontrado!"
+            },
+            "500": {
+              "description": "Algo deu errado no processamento!"
+            }
+          }
+        }
+      }
+    }
+  }
+  
