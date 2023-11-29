@@ -1,5 +1,7 @@
 import express from 'express';
 import router from './Router/routers.router';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './swagger.json';
 
 class App {
   private app: express.Application;
@@ -12,6 +14,11 @@ class App {
 
   private config(): void {
     this.app.use(express.json());
+    this.app.use(
+      '/docs-products',
+      swaggerUi.serve,
+      swaggerUi.setup(swaggerDocument),
+    );
   }
 
   private routes() {
