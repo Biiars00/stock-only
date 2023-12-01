@@ -33,7 +33,7 @@
                           "id": {
                             "type": "string"
                           },
-                          "nameProduct": {
+                          "name": {
                             "type": "string"
                           },
                           "price": {
@@ -44,20 +44,6 @@
                           },
                           "manufacturer": {
                             "type": "string"
-                          },
-                          "category": {
-                            "type": "object",
-                            "properties": {
-                              "office": {
-                                "type": "string"
-                              },
-                              "technology": {
-                                "type": "string"
-                              },
-                              "others": {
-                                "type": "string"
-                              }
-                            }
                           }
                         }
                       }
@@ -90,7 +76,7 @@
                         "id": {
                           "type": "string"
                         },
-                        "nameProduct": {
+                        "name": {
                           "type": "string"
                         },
                         "price": {
@@ -101,20 +87,6 @@
                         },
                         "manufacturer": {
                           "type": "string"
-                        },
-                        "category": {
-                          "type": "object",
-                          "properties": {
-                            "office": {
-                              "type": "string"
-                            },
-                            "technology": {
-                              "type": "string"
-                            },
-                            "others": {
-                              "type": "string"
-                            }
-                          }
                         }
                       }
                     }
@@ -164,7 +136,7 @@
                           "id": {
                             "type": "string"
                           },
-                          "nameProduct": {
+                          "name": {
                             "type": "string"
                           },
                           "price": {
@@ -175,20 +147,6 @@
                           },
                           "manufacturer": {
                             "type": "string"
-                          },
-                          "category": {
-                            "type": "object",
-                            "properties": {
-                              "office": {
-                                "type": "string"
-                              },
-                              "technology": {
-                                "type": "string"
-                              },
-                              "others": {
-                                "type": "string"
-                              }
-                            }
                           }
                         }
                       }
@@ -230,7 +188,7 @@
                         "id": {
                           "type": "string"
                         },
-                        "nameProduct": {
+                        "name": {
                           "type": "string"
                         },
                         "price": {
@@ -241,20 +199,6 @@
                         },
                         "manufacturer": {
                           "type": "string"
-                        },
-                        "category": {
-                          "type": "object",
-                          "properties": {
-                            "office": {
-                              "type": "string"
-                            },
-                            "technology": {
-                              "type": "string"
-                            },
-                            "others": {
-                              "type": "string"
-                            }
-                          }
                         }
                       }
                     }
