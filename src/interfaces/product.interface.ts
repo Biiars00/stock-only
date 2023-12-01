@@ -1,8 +1,9 @@
 export interface IProductProps {
   id: string;
-  nameProduct: string;
-  unit: number;
+  name: string;
   price: number;
+  description: string;
+  manufacturer: string;
 }
 
 interface IProductsRepository {
@@ -10,15 +11,17 @@ interface IProductsRepository {
   getProductByIdDB(id: string): Promise<IProductProps>;
   registerProductDB(
     id: string,
-    nameProduct: string,
-    unit: number,
+    name: string,
     price: number,
+    description: string,
+    manufacturer: string,
   ): Promise<string>;
   updateProductDB(
     id: string,
-    nameProduct: string,
-    unit: number,
+    name: string,
     price: number,
+    description: string,
+    manufacturer: string,
   ): Promise<string>;
   removeProductDB(id: string): Promise<string>;
 }

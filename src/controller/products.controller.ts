@@ -41,9 +41,10 @@ class ProductsController {
     try {
       const addProducts = await this.productsServices.registerProduct(
         req.body.id,
-        req.body.nameProduct,
-        req.body.unit,
+        req.body.name,
         req.body.price,
+        req.body.description,
+        req.body.manufacturer,
       );
 
       if (!addProducts) {
@@ -60,9 +61,10 @@ class ProductsController {
     try {
       const updateProducts = await this.productsServices.updateProduct(
         req.params.id,
-        req.body.nameProduct,
-        req.body.unit,
+        req.body.name,
         req.body.price,
+        req.body.description,
+        req.body.manufacturer,
       );
 
       if (!updateProducts) {

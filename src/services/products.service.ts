@@ -28,16 +28,18 @@ class ProductsService {
 
   async registerProduct(
     id: string,
-    nameProduct: string,
-    unit: number,
+    name: string,
     price: number,
+    description: string,
+    manufacturer: string,
   ) {
     try {
       const db = await this.productsRepository.registerProductDB(
         id,
-        nameProduct,
-        unit,
+        name,
         price,
+        description,
+        manufacturer,
       );
       return db;
     } catch (error) {
@@ -47,16 +49,18 @@ class ProductsService {
 
   async updateProduct(
     id: string,
-    nameProduct: string,
-    unit: number,
+    name: string,
     price: number,
+    description: string,
+    manufacturer: string,
   ) {
     try {
       const db = await this.productsRepository.updateProductDB(
         id,
-        nameProduct,
-        unit,
+        name,
         price,
+        description,
+        manufacturer,
       );
       return db;
     } catch (error) {

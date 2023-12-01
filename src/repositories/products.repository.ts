@@ -35,15 +35,17 @@ class ProductsRepository implements IProductsRepository {
 
   async registerProductDB(
     id: string,
-    nameProduct: string,
-    unit: number,
+    name: string,
     price: number,
+    description: string,
+    manufacturer: string,
   ): Promise<IProductProps | any> {
     try {
       const newProduct = {
-        nameProduct: nameProduct,
-        unit: unit,
+        name: name,
         price: price,
+        description: description,
+        manufacturer: manufacturer,
       };
 
       const addProduct = await this.db.add(newProduct).then((docRef) => {
@@ -62,16 +64,18 @@ class ProductsRepository implements IProductsRepository {
 
   async updateProductDB(
     id: string,
-    nameProduct: string,
-    unit: number,
+    name: string,
     price: number,
+    description: string,
+    manufacturer: string,
   ): Promise<IProductProps | any> {
     try {
       const dataProduct = {
         id: id,
-        nameProduct: nameProduct,
-        unit: unit,
+        name: name,
         price: price,
+        description: description,
+        manufacturer: manufacturer,
       };
       const updateProduct = await this.db.doc(id).update(dataProduct);
 
